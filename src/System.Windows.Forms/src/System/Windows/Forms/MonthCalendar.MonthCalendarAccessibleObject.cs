@@ -45,7 +45,7 @@ namespace System.Windows.Forms
             {
                 get
                 {
-                    bool result = GetCalendarGridInfoText(Interop.MonthCalendar.Part.MCGIP_CALENDARCELL, _calendarIndex, -1, 0, out string text);
+                    bool result = GetCalendarGridInfoText(ComCtl32.MCGIP.CALENDARCELL, _calendarIndex, -1, 0, out string text);
                     if (!result || string.IsNullOrEmpty(text))
                     {
                         return false;
@@ -206,8 +206,8 @@ namespace System.Windows.Forms
                 get
                 {
                     GetCalendarGridInfo(
-                        Interop.MonthCalendar.GridInfoFlags.MCGIF_RECT,
-                        Interop.MonthCalendar.Part.MCGIP_CALENDARBODY,
+                        ComCtl32.MCGIF.RECT,
+                        ComCtl32.MCGIP.CALENDARBODY,
                         _calendarIndex,
                         -1,
                         -1,
@@ -220,8 +220,8 @@ namespace System.Windows.Forms
                     while (success)
                     {
                         success = GetCalendarGridInfo(
-                            Interop.MonthCalendar.GridInfoFlags.MCGIF_RECT,
-                            Interop.MonthCalendar.Part.MCGIP_CALENDARCELL,
+                            ComCtl32.MCGIF.RECT,
+                            ComCtl32.MCGIP.CALENDARCELL,
                             _calendarIndex,
                             0,
                             columnCount,
@@ -247,8 +247,8 @@ namespace System.Windows.Forms
                 get
                 {
                     GetCalendarGridInfo(
-                        Interop.MonthCalendar.GridInfoFlags.MCGIF_RECT,
-                        Interop.MonthCalendar.Part.MCGIP_CALENDARBODY,
+                        ComCtl32.MCGIF.RECT,
+                        ComCtl32.MCGIP.CALENDARBODY,
                         _calendarIndex,
                         -1,
                         -1,
@@ -261,8 +261,8 @@ namespace System.Windows.Forms
                     while (success)
                     {
                         success = GetCalendarGridInfo(
-                            Interop.MonthCalendar.GridInfoFlags.MCGIF_RECT,
-                            Interop.MonthCalendar.Part.MCGIP_CALENDARCELL,
+                            ComCtl32.MCGIF.RECT,
+                            ComCtl32.MCGIP.CALENDARCELL,
                             _calendarIndex,
                             rowCount,
                             0,
@@ -293,27 +293,27 @@ namespace System.Windows.Forms
                 int innerY = (int)y;
 
                 NativeMethods.MCHITTESTINFO_V6 hitTestInfo = GetHitTestInfo(innerX, innerY);
-                switch ((Interop.MonthCalendar.HitTest)hitTestInfo.uHit)
+                switch ((ComCtl32.MCHT)hitTestInfo.uHit)
                 {
-                    case Interop.MonthCalendar.HitTest.MCHT_TITLEBTNPREV:
+                    case ComCtl32.MCHT.TITLEBTNPREV:
                         return GetCalendarChildAccessibleObject(_calendarIndex, CalendarChildType.PreviousButton);
 
-                    case Interop.MonthCalendar.HitTest.MCHT_TITLEBTNNEXT:
+                    case ComCtl32.MCHT.TITLEBTNNEXT:
                         return GetCalendarChildAccessibleObject(_calendarIndex, CalendarChildType.NextButton);
 
-                    case Interop.MonthCalendar.HitTest.MCHT_TITLE:
-                    case Interop.MonthCalendar.HitTest.MCHT_TITLEMONTH:
-                    case Interop.MonthCalendar.HitTest.MCHT_TITLEYEAR:
+                    case ComCtl32.MCHT.TITLE:
+                    case ComCtl32.MCHT.TITLEMONTH:
+                    case ComCtl32.MCHT.TITLEYEAR:
                         return GetCalendarChildAccessibleObject(_calendarIndex, CalendarChildType.CalendarHeader);
 
-                    case Interop.MonthCalendar.HitTest.MCHT_CALENDARDAY:
-                    case Interop.MonthCalendar.HitTest.MCHT_CALENDARWEEKNUM:
-                    case Interop.MonthCalendar.HitTest.MCHT_CALENDARDATE:
+                    case ComCtl32.MCHT.CALENDARDAY:
+                    case ComCtl32.MCHT.CALENDARWEEKNUM:
+                    case ComCtl32.MCHT.CALENDARDATE:
                         // Get calendar body's child.
                         CalendarBodyAccessibleObject calendarBodyAccessibleObject = (CalendarBodyAccessibleObject)GetCalendarChildAccessibleObject(_calendarIndex, CalendarChildType.CalendarBody);
                         return calendarBodyAccessibleObject.GetFromPoint(hitTestInfo);
 
-                    case Interop.MonthCalendar.HitTest.MCHT_TODAYLINK:
+                    case ComCtl32.MCHT.TODAYLINK:
                         return GetCalendarChildAccessibleObject(_calendarIndex, CalendarChildType.TodayLink);
                 }
 
@@ -352,7 +352,7 @@ namespace System.Windows.Forms
                 hitTestInfo.pt.x = point.X;
                 hitTestInfo.pt.y = point.Y;
 
-                UnsafeNativeMethods.SendMessage(new HandleRef(this, Handle), (int)Interop.MonthCalendar.Messages.MCM_HITTEST, 0, ref hitTestInfo);
+                UnsafeNativeMethods.SendMessage(new HandleRef(this, Handle), (int)ComCtl32.MCM.HITTEST, 0, ref hitTestInfo);
 
                 return hitTestInfo;
             }
@@ -375,7 +375,7 @@ namespace System.Windows.Forms
                 switch (calendarChildType)
                 {
                     case CalendarChildType.CalendarHeader:
-                        GetCalendarGridInfoText(Interop.MonthCalendar.Part.MCGIP_CALENDARHEADER, calendarIndex, 0, 0, out string text);
+                        GetCalendarGridInfoText(ComCtl32.MCGIP.CALENDARHEADER, calendarIndex, 0, 0, out string text);
                         return text;
                     case CalendarChildType.TodayLink:
                         return string.Format(SR.MonthCalendarTodayButtonAccessibleName, _owner.TodayDate.ToShortDateString());
@@ -395,8 +395,8 @@ namespace System.Windows.Forms
 
                 CalendarRowAccessibleObject parentRowAccessibleObject = (CalendarRowAccessibleObject)parentAccessibleObject;
                 int rowIndex = parentRowAccessibleObject.RowIndex;
-                bool getNameResult = GetCalendarGridInfoText(Interop.MonthCalendar.Part.MCGIP_CALENDARCELL, calendarIndex, rowIndex, columnIndex, out string text);
-                bool getDateResult = GetCalendarGridInfo(Interop.MonthCalendar.GridInfoFlags.MCGIF_DATE, Interop.MonthCalendar.Part.MCGIP_CALENDARCELL,
+                bool getNameResult = GetCalendarGridInfoText(ComCtl32.MCGIP.CALENDARCELL, calendarIndex, rowIndex, columnIndex, out string text);
+                bool getDateResult = GetCalendarGridInfo(ComCtl32.MCGIF.DATE, ComCtl32.MCGIP.CALENDARCELL,
                     calendarIndex,
                     rowIndex,
                     columnIndex,
@@ -447,8 +447,8 @@ namespace System.Windows.Forms
 
                 // Search name for the first cell in the row.
                 bool success = GetCalendarGridInfo(
-                    Interop.MonthCalendar.GridInfoFlags.MCGIF_DATE,
-                    Interop.MonthCalendar.Part.MCGIP_CALENDARCELL,
+                    ComCtl32.MCGIF.DATE,
+                    ComCtl32.MCGIP.CALENDARCELL,
                     calendarIndex,
                     rowIndex,
                     0,
@@ -474,8 +474,8 @@ namespace System.Windows.Forms
             }
 
             private bool GetCalendarGridInfo(
-                Interop.MonthCalendar.GridInfoFlags dwFlags,
-                Interop.MonthCalendar.Part dwPart,
+                ComCtl32.MCGIF dwFlags,
+                ComCtl32.MCGIP dwPart,
                 int calendarIndex,
                 int row,
                 int column,
@@ -484,11 +484,11 @@ namespace System.Windows.Forms
                 out NativeMethods.SYSTEMTIME startDate)
             {
                 Debug.Assert(
-                    (dwFlags & ~(Interop.MonthCalendar.GridInfoFlags.MCGIF_DATE | Interop.MonthCalendar.GridInfoFlags.MCGIF_RECT)) == 0,
+                    (dwFlags & ~(ComCtl32.MCGIF.DATE | ComCtl32.MCGIF.RECT)) == 0,
                     "GetCalendarGridInfo() should be used only to obtain Date and Rect,"
                     + "dwFlags has flag bits other that MCGIF_DATE and MCGIF_RECT");
 
-                Interop.MonthCalendar.MCGRIDINFO gridInfo = new Interop.MonthCalendar.MCGRIDINFO();
+                ComCtl32.MCGRIDINFO gridInfo = new ComCtl32.MCGRIDINFO();
                 gridInfo.dwFlags = (uint)dwFlags;
                 gridInfo.cbSize = (uint)Marshal.SizeOf(gridInfo);
                 gridInfo.dwPart = (uint)dwPart;
@@ -515,24 +515,24 @@ namespace System.Windows.Forms
                 return result;
             }
 
-            private bool GetCalendarGridInfo(ref Interop.MonthCalendar.MCGRIDINFO gridInfo)
+            private bool GetCalendarGridInfo(ref ComCtl32.MCGRIDINFO gridInfo)
             {
                 // Do not use this if gridInfo.dwFlags contains MCGIF_NAME;
                 // use GetCalendarGridInfoText() instead.
                 Debug.Assert(
-                    (gridInfo.dwFlags & (uint)Interop.MonthCalendar.GridInfoFlags.MCGIF_NAME) == 0,
+                    (gridInfo.dwFlags & (uint)ComCtl32.MCGIF.NAME) == 0,
                     "Param dwFlags contains MCGIF_NAME, use GetCalendarGridInfoText() to retrieve the text of a calendar part.");
 
-                gridInfo.dwFlags &= ~(uint)Interop.MonthCalendar.GridInfoFlags.MCGIF_NAME;
+                gridInfo.dwFlags &= ~(uint)ComCtl32.MCGIF.NAME;
 
-                return _owner.SendMessage((int)Interop.MonthCalendar.Messages.MCM_GETCALENDARGRIDINFO, 0, ref gridInfo) != IntPtr.Zero;
+                return _owner.SendMessage((int)ComCtl32.MCM.GETCALENDARGRIDINFO, 0, ref gridInfo) != IntPtr.Zero;
             }
 
-            private bool GetCalendarGridInfoText(Interop.MonthCalendar.Part dwPart, int calendarIndex, int row, int column, out string text)
+            private bool GetCalendarGridInfoText(ComCtl32.MCGIP dwPart, int calendarIndex, int row, int column, out string text)
             {
                 const int nameLength = 128;
 
-                Interop.MonthCalendar.MCGRIDINFO gridInfo = new Interop.MonthCalendar.MCGRIDINFO();
+                ComCtl32.MCGRIDINFO gridInfo = new ComCtl32.MCGRIDINFO();
                 gridInfo.cbSize = (uint)Marshal.SizeOf(gridInfo);
                 gridInfo.dwPart = (uint)dwPart;
                 gridInfo.iCalendar = calendarIndex;
@@ -548,21 +548,21 @@ namespace System.Windows.Forms
             }
 
             // Use to retrieve MCGIF_NAME only.
-            private bool GetCalendarGridInfoText(ref Interop.MonthCalendar.MCGRIDINFO gridInfo)
+            private bool GetCalendarGridInfoText(ref ComCtl32.MCGRIDINFO gridInfo)
             {
                 Debug.Assert(
                     gridInfo.dwFlags == 0,
                     "gridInfo.dwFlags should be 0 when calling GetCalendarGridInfoText");
 
-                gridInfo.dwFlags = (uint)Interop.MonthCalendar.GridInfoFlags.MCGIF_NAME;
+                gridInfo.dwFlags = (uint)ComCtl32.MCGIF.NAME;
 
-                return _owner.SendMessage((int)Interop.MonthCalendar.Messages.MCM_GETCALENDARGRIDINFO, 0, ref gridInfo) != IntPtr.Zero;
+                return _owner.SendMessage((int)ComCtl32.MCM.GETCALENDARGRIDINFO, 0, ref gridInfo) != IntPtr.Zero;
             }
 
-            public bool GetCalendarPartRectangle(int calendarIndex, Interop.MonthCalendar.Part dwPart, int row, int column, out RECT calendarPartRectangle)
+            public bool GetCalendarPartRectangle(int calendarIndex, ComCtl32.MCGIP dwPart, int row, int column, out RECT calendarPartRectangle)
             {
                 bool success = GetCalendarGridInfo(
-                    Interop.MonthCalendar.GridInfoFlags.MCGIF_RECT,
+                    ComCtl32.MCGIF.RECT,
                     dwPart,
                     calendarIndex,
                     row,
@@ -635,8 +635,8 @@ namespace System.Windows.Forms
                     for (int column = 0; column < columnCount; column++)
                     {
                         bool success = GetCalendarGridInfo(
-                            Interop.MonthCalendar.GridInfoFlags.MCGIF_DATE,
-                            Interop.MonthCalendar.Part.MCGIP_CALENDARCELL,
+                            ComCtl32.MCGIF.DATE,
+                            ComCtl32.MCGIP.CALENDARCELL,
                             _calendarIndex,
                             row,
                             column,

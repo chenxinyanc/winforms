@@ -4,19 +4,19 @@
 
 internal static partial class Interop
 {
-    internal static partial class MonthCalendar
+    internal static partial class ComCtl32
     {
         /// <summary>
-        ///  MonthCalendar Control styles constatnts.
-        ///  Copied form CommCtrl.h
+        /// Represents MonthCalendar Control styles constatnts.
+        /// Copied form CommCtrl.h
         /// </summary>
-        public enum Styles
+        public enum MCS
         {
-            MCS_DAYSTATE = 0x0001,
-            MCS_MULTISELECT = 0x0002,
-            MCS_WEEKNUMBERS = 0x0004,
-            MCS_NOTODAYCIRCLE = 0x0008,
-            MCS_NOTODAY = 0x0010
+            DAYSTATE = 0x0001,         // MCS_DAYSTATE
+            MULTISELECT = 0x0002,      // MCS_MULTISELECT
+            WEEKNUMBERS = 0x0004,      // MCS_WEEKNUMBERS
+            NOTODAYCIRCLE = 0x0008,    // MCS_NOTODAYCIRCLE
+            NOTODAY = 0x0010           // MCS_NOTODAY
         }
     }
 }

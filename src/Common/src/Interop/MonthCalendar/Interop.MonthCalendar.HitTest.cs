@@ -4,30 +4,30 @@
 
 internal static partial class Interop
 {
-    internal static partial class MonthCalendar
+    internal static partial class ComCtl32
     {
         /// <summary>
-        ///  MonthCalendar Control HitTest values.
-        ///  Copied form CommCtrl.h
+        /// Represents MonthCalendar Control HitTest values.
+        /// Copied form CommCtrl.h
         /// </summary>
-        public enum HitTest
+        public enum MCHT
         {
-            MCHT_TITLE = 0x00010000,
-            MCHT_CALENDAR = 0x00020000,
-            MCHT_TODAYLINK = 0x00030000,
-
-            MCHT_TITLEBK = (MCHT_TITLE),
-            MCHT_TITLEMONTH = (MCHT_TITLE | 0x0001),
-            MCHT_TITLEYEAR = (MCHT_TITLE | 0x0002),
-            MCHT_TITLEBTNNEXT = (MCHT_TITLE | 0x01000000 | 0x0003),
-            MCHT_TITLEBTNPREV = (MCHT_TITLE | 0x02000000 | 0x0003),
-
-            MCHT_CALENDARBK = (MCHT_CALENDAR),
-            MCHT_CALENDARDATE = (MCHT_CALENDAR | 0x0001),
-            MCHT_CALENDARDATENEXT = ((MCHT_CALENDAR | 0x0001) | 0x01000000),
-            MCHT_CALENDARDATEPREV = ((MCHT_CALENDAR | 0x0001) | 0x02000000),
-            MCHT_CALENDARDAY = (MCHT_CALENDAR | 0x0002),
-            MCHT_CALENDARWEEKNUM = (MCHT_CALENDAR | 0x0003)
+            TITLE = 0x00010000,                                             // MCHT_TITLE
+            CALENDAR = 0x00020000,                                          // MCHT_CALENDAR
+            TODAYLINK = 0x00030000,                                         // MCHT_TODAYLINK
+                                                                            //
+            TITLEBK = (MCHT.TITLE),                                         // MCHT_TITLEBK
+            TITLEMONTH = (MCHT.TITLE | 0x0001),                             // MCHT_TITLEMONTH
+            TITLEYEAR = (MCHT.TITLE | 0x0002),                              // MCHT_TITLEYEAR
+            TITLEBTNNEXT = (MCHT.TITLE | 0x01000000 | 0x0003),              // MCHT_TITLEBTNNEXT
+            TITLEBTNPREV = (MCHT.TITLE | 0x02000000 | 0x0003),              // MCHT_TITLEBTNPREV
+                                                                            //
+            CALENDARBK = (MCHT.CALENDAR),                                   // MCHT_CALENDARBK
+            CALENDARDATE = (MCHT.CALENDAR | 0x0001),                        // MCHT_CALENDARDATE
+            CALENDARDATENEXT = ((MCHT.CALENDAR | 0x0001) | 0x01000000),     // MCHT_CALENDARDATENEXT
+            CALENDARDATEPREV = ((MCHT.CALENDAR | 0x0001) | 0x02000000),     // MCHT_CALENDARDATEPREV
+            CALENDARDAY = (MCHT.CALENDAR | 0x0002),                         // MCHT_CALENDARDAY
+            CALENDARWEEKNUM = (MCHT.CALENDAR | 0x0003)                      // MCHT_CALENDARWEEKNUM
         }
     }
 }

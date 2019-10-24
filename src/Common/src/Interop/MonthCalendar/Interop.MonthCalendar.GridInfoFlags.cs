@@ -4,17 +4,17 @@
 
 internal static partial class Interop
 {
-    internal static partial class MonthCalendar
+    internal static partial class ComCtl32
     {
         /// <summary>
-        ///  MonthCalendar Control Messages.
-        ///  Copied form CommCtrl.h
+        /// Represents MonthCalendar Control Grid Info Flags.
+        /// Copied form CommCtrl.h
         /// </summary>
-        public enum GridInfoFlags
+        public enum MCGIF
         {
-            MCGIF_DATE = 0x00000001,
-            MCGIF_RECT = 0x00000002,
-            MCGIF_NAME = 0x00000004
+            DATE = 0x00000001, // MCGIF_DATE
+            RECT = 0x00000002, // MCGIF_RECT
+            NAME = 0x00000004  // MCGIF_NAME
         }
     }
 }

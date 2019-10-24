@@ -22,7 +22,7 @@ namespace System.Windows.Forms
 
             protected override RECT CalculateBoundingRectangle()
             {
-                _calendarAccessibleObject.GetCalendarPartRectangle(_calendarIndex, Interop.MonthCalendar.Part.MCGIP_CALENDARBODY, 0, 0, out RECT calendarPartRectangle);
+                _calendarAccessibleObject.GetCalendarPartRectangle(_calendarIndex, ComCtl32.MCGIP.CALENDARBODY, 0, 0, out RECT calendarPartRectangle);
                 return calendarPartRectangle;
             }
 
@@ -47,11 +47,11 @@ namespace System.Windows.Forms
 
             public CalendarChildAccessibleObject GetFromPoint(NativeMethods.MCHITTESTINFO_V6 hitTestInfo)
             {
-                switch ((Interop.MonthCalendar.HitTest)hitTestInfo.uHit)
+                switch ((ComCtl32.MCHT)hitTestInfo.uHit)
                 {
-                    case Interop.MonthCalendar.HitTest.MCHT_CALENDARDAY:
-                    case Interop.MonthCalendar.HitTest.MCHT_CALENDARWEEKNUM:
-                    case Interop.MonthCalendar.HitTest.MCHT_CALENDARDATE:
+                    case ComCtl32.MCHT.CALENDARDAY:
+                    case ComCtl32.MCHT.CALENDARWEEKNUM:
+                    case ComCtl32.MCHT.CALENDARDATE:
                         AccessibleObject rowAccessibleObject =
                             _calendarAccessibleObject.GetCalendarChildAccessibleObject(_calendarIndex, CalendarChildType.CalendarRow, this, hitTestInfo.iRow);
                         return

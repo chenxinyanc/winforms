@@ -7,8 +7,8 @@ internal static partial class Interop
     internal static partial class ComCtl32
     {
         /// <summary>
-        ///  MonthCalendar size and color constants.
-        ///  Copied form CommCtrl.h
+        /// Represents MonthCalendar control size and color constants.
+        /// Copied form CommCtrl.h
         /// </summary>
         public enum MCSC
         {

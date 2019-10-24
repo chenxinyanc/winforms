@@ -4,23 +4,23 @@
 
 internal static partial class Interop
 {
-    internal static partial class MonthCalendar
+    internal static partial class ComCtl32
     {
         /// <summary>
-        ///  MonthCalendar set color constants.
-        ///  Copied form CommCtrl.h
+        /// Represents MonthCalendar control part constants.
+        /// Copied form CommCtrl.h
         /// </summary>
-        public enum Part : uint
+        public enum MCGIP : uint
         {
-            MCGIP_CALENDARCONTROL = 0,
-            MCGIP_NEXT = 1,
-            MCGIP_PREV = 2,
-            MCGIP_FOOTER = 3,
-            MCGIP_CALENDAR = 4,
-            MCGIP_CALENDARHEADER = 5,
-            MCGIP_CALENDARBODY = 6,
-            MCGIP_CALENDARROW = 7,
-            MCGIP_CALENDARCELL = 8
+            CALENDARCONTROL = 0,   // MCGIP_CALENDARCONTROL
+            NEXT = 1,              // MCGIP_NEXT
+            PREV = 2,              // MCGIP_PREV
+            FOOTER = 3,            // MCGIP_FOOTER
+            CALENDAR = 4,          // MCGIP_CALENDAR
+            CALENDARHEADER = 5,    // MCGIP_CALENDARHEADER
+            CALENDARBODY = 6,      // MCGIP_CALENDARBODY
+            CALENDARROW = 7,       // MCGIP_CALENDARROW
+            CALENDARCELL = 8       // MCGIP_CALENDARCELL
         }
     }
 }

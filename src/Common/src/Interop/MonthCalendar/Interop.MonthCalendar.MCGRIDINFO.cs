@@ -7,11 +7,11 @@ using static System.Windows.Forms.NativeMethods;
 
 internal static partial class Interop
 {
-    internal static partial class MonthCalendar
+    internal static partial class ComCtl32
     {
         /// <summary>
-        ///  MonthCalendar grid info structure.
-        ///  Copied form CommCtrl.h
+        /// MonthCalendar grid info structure.
+        /// Copied form CommCtrl.h
         /// </summary>
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         unsafe public struct MCGRIDINFO
