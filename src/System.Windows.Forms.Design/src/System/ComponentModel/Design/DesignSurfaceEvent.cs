@@ -1,44 +1,30 @@
-//------------------------------------------------------------------------------
-// <copyright file="DesignSurfaceEvent.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
-//------------------------------------------------------------------------------
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
-namespace System.ComponentModel.Design {
-
-    /// <include file='doc\DesignSurfaceEventHandler.uex' path='docs/doc[@for="DesignSurfaceEventHandler"]/*' />
-    /// <devdoc>
-    ///     Event handler for the DesignSurface event.
-    /// </devdoc>
+namespace System.ComponentModel.Design
+{
+    /// <summary>
+    ///  Event handler for the DesignSurface event.
+    /// </summary>
     public delegate void DesignSurfaceEventHandler(object sender, DesignSurfaceEventArgs e);
-    
-    /// <include file='doc\DesignSurfaceEventArgs.uex' path='docs/doc[@for="DesignSurfaceEventArgs"]/*' />
-    /// <devdoc>
-    ///     Event args for the DesignSurface event.
-    /// </devdoc>
-    public class DesignSurfaceEventArgs : EventArgs {
 
-        private DesignSurface _surface;
-
-        /// <include file='doc\DesignSurfaceEventArgs.uex' path='docs/doc[@for="DesignSurfaceEventArgs.DesignSurfaceEventArgs"]/*' />
-        /// <devdoc>
-        ///     Creates a new DesignSurfaceEventArgs for the given design surface.
-        /// </devdoc>
-        public DesignSurfaceEventArgs(DesignSurface surface) {
-            if (surface == null) {
-                throw new ArgumentNullException("surface");
-            }
-            _surface = surface;
+    /// <summary>
+    ///  Event args for the DesignSurface event.
+    /// </summary>
+    public class DesignSurfaceEventArgs : EventArgs
+    {
+        /// <summary>
+        ///  Creates a new DesignSurfaceEventArgs for the given design surface.
+        /// </summary>
+        public DesignSurfaceEventArgs(DesignSurface surface)
+        {
+            Surface = surface ?? throw new ArgumentNullException(nameof(surface));
         }
 
-        /// <include file='doc\DesignSurfaceEventArgs.uex' path='docs/doc[@for="DesignSurfaceEventArgs.Surface"]/*' />
-        /// <devdoc>
-        ///     The design surface passed into the constructor.
-        /// </devdoc>
-        public DesignSurface Surface {
-            get {
-                return _surface;
-            }
-        }
+        /// <summary>
+        ///  The design surface passed into the constructor.
+        /// </summary>
+        public DesignSurface Surface { get; }
     }
 }

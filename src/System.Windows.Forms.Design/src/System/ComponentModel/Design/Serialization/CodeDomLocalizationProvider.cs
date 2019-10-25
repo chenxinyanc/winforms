@@ -17,13 +17,13 @@ namespace System.ComponentModel.Design.Serialization {
     using System.Windows.Forms.Design;
 
     /// <include file='doc\CodeDomLocalizationProvider.uex' path='docs/doc[@for="CodeDomLocalizationProvider"]/*' />
-    /// <devdoc>
-    ///		This is a serialization provider that provides a localization feature.  This provider
-    ///     adds two properties to the root component:  Language and Localizable.  If Localizable
-    ///     is set to true this provider will change the way that component properties are generated
-    ///     and will route their values to a resource file.  Two localization models are 
-    ///     supported.
-    /// </devdoc>
+    /// <summary>
+    ///  This is a serialization provider that provides a localization feature.  This provider
+    ///  adds two properties to the root component:  Language and Localizable.  If Localizable
+    ///  is set to true this provider will change the way that component properties are generated
+    ///  and will route their values to a resource file.  Two localization models are 
+    ///  supported.
+    /// </summary>
     public sealed class CodeDomLocalizationProvider: IDisposable, IDesignerSerializationProvider {
         
         private IExtenderProviderService    _providerService;
@@ -34,30 +34,30 @@ namespace System.ComponentModel.Design.Serialization {
         private Hashtable                   _nopMemberSerializers;
 
         /// <include file='doc\CodeDomLocalizationProvider.uex' path='docs/doc[@for="CodeDomLocalizationProvider.CodeDomLocalizationProvider"]/*' />
-        /// <devdoc>
-        ///		Creates a new adapter and attaches it to the serialization manager.  This 
-        ///		will add itself as a serializer for resources into the serialization manager, and, 
-        ///		if not already added, will add itself as an extender provider to the roost component 
-        ///		and provide the Language and Localizable properties.  The latter piece is only 
-        ///		supplied if CodeDomLocalizationModel is not “none”.  
-        /// </devdoc>
+        /// <summary>
+        ///  Creates a new adapter and attaches it to the serialization manager.  This 
+        ///  will add itself as a serializer for resources into the serialization manager, and, 
+        ///  if not already added, will add itself as an extender provider to the roost component 
+        ///  and provide the Language and Localizable properties.  The latter piece is only 
+        ///  supplied if CodeDomLocalizationModel is not ï¿½noneï¿½.  
+        /// </summary>
         public CodeDomLocalizationProvider(IServiceProvider provider, CodeDomLocalizationModel model) {
-            if (provider == null) throw new ArgumentNullException("provider");
+            if (provider == null) throw new ArgumentNullException(nameof(provider));
             _model = model;
             Initialize(provider);
         }
 
         /// <include file='doc\CodeDomLocalizationProvider.uex' path='docs/doc[@for="CodeDomLocalizationProvider.CodeDomLocalizationProvider1"]/*' />
-        /// <devdoc>
-        ///		Creates a new adapter and attaches it to the serialization manager.  This 
-        ///		will add itself as a serializer for resources into the serialization manager, and, 
-        ///		if not already added, will add itself as an extender provider to the roost component 
-        ///		and provide the Language and Localizable properties.  The latter piece is only 
-        ///		supplied if CodeDomLocalizationModel is not “none”.  
-        /// </devdoc>
+        /// <summary>
+        ///  Creates a new adapter and attaches it to the serialization manager.  This 
+        ///  will add itself as a serializer for resources into the serialization manager, and, 
+        ///  if not already added, will add itself as an extender provider to the roost component 
+        ///  and provide the Language and Localizable properties.  The latter piece is only 
+        ///  supplied if CodeDomLocalizationModel is not ï¿½noneï¿½.  
+        /// </summary>
         public CodeDomLocalizationProvider(IServiceProvider provider, CodeDomLocalizationModel model, CultureInfo[] supportedCultures) {
-            if (provider == null) throw new ArgumentNullException("provider");
-            if (supportedCultures == null) throw new ArgumentNullException("supportedCultures");
+            if (provider == null) throw new ArgumentNullException(nameof(provider));
+            if (supportedCultures == null) throw new ArgumentNullException(nameof(supportedCultures));
 
             _model = model;
             _supportedCultures = (CultureInfo[])supportedCultures.Clone();
@@ -65,9 +65,9 @@ namespace System.ComponentModel.Design.Serialization {
         }
 
         /// <include file='doc\CodeDomLocalizationProvider.uex' path='docs/doc[@for="CodeDomLocalizationProvider.Dispose"]/*' />
-        /// <devdoc>
-        ///     Disposes this object.
-        /// </devdoc>
+        /// <summary>
+        ///  Disposes this object.
+        /// </summary>
         public void Dispose() {
             if (_providerService != null && _extender != null) {
                 _providerService.RemoveExtenderProvider(_extender);
@@ -76,9 +76,9 @@ namespace System.ComponentModel.Design.Serialization {
             }
         }
 
-        /// <devdoc>
-        ///     Adds our extended properties.
-        /// </devdoc>
+        /// <summary>
+        ///  Adds our extended properties.
+        /// </summary>
         private void Initialize(IServiceProvider provider) {
             _providerService = provider.GetService(typeof(IExtenderProviderService)) as IExtenderProviderService;
             if (_providerService == null) {
@@ -92,9 +92,9 @@ namespace System.ComponentModel.Design.Serialization {
 
         #region IDesignerSerializationProvider Members
 
-        /// <devdoc>
-        ///    Returns a code dom serializer
-        /// </devdoc>
+        /// <summary>
+        ///  Returns a code dom serializer
+        /// </summary>
         private object GetCodeDomSerializer(IDesignerSerializationManager manager, object currentSerializer, Type objectType, Type serializerType) {
 
             if (currentSerializer == null) {
@@ -142,9 +142,9 @@ namespace System.ComponentModel.Design.Serialization {
             return null;
         }
 
-        /// <devdoc>
-        ///    Returns a code dom serializer for members.
-        /// </devdoc>
+        /// <summary>
+        ///  Returns a code dom serializer for members.
+        /// </summary>
         private object GetMemberCodeDomSerializer(IDesignerSerializationManager manager, object currentSerializer, Type objectType, Type serializerType) {
             CodeDomLocalizationModel model = _model;
 
@@ -209,9 +209,9 @@ namespace System.ComponentModel.Design.Serialization {
         }
 
         /// <include file='doc\CodeDomLocalizationProvider.uex' path='docs/doc[@for="CodeDomLocalizationProvider.IDesignerSerializationProvider.GetSerializer"]/*' />
-        /// <devdoc>
-        ///     Returns an appropriate serializer for the object.  
-        /// </devdoc>
+        /// <summary>
+        ///  Returns an appropriate serializer for the object.  
+        /// </summary>
         object IDesignerSerializationProvider.GetSerializer(IDesignerSerializationManager manager, object currentSerializer, Type objectType, Type serializerType) {
 
             if (serializerType == typeof(CodeDomSerializer)) {
@@ -227,9 +227,9 @@ namespace System.ComponentModel.Design.Serialization {
         #endregion
 
         #region LanguageExtenders class
-        /// <devdoc>
-        ///    The design time language and localizable properties.
-        /// </devdoc>
+        /// <summary>
+        ///  The design time language and localizable properties.
+        /// </summary>
         [ProvideProperty("Language", typeof(IComponent))]
         [ProvideProperty("LoadLanguage", typeof(IComponent))]
         [ProvideProperty("Localizable", typeof(IComponent))]
@@ -244,8 +244,8 @@ namespace System.ComponentModel.Design.Serialization {
             private CultureInfo _loadLanguage;
             private CultureInfo _defaultLanguage;
 
-            /// <devdoc>
-            /// </devdoc>
+            /// <summary>
+            /// </summary>
             public LanguageExtenders(IServiceProvider serviceProvider, CultureInfo[] supportedCultures) {
                 _serviceProvider = serviceProvider;
                 _host = serviceProvider.GetService(typeof(IDesignerHost)) as IDesignerHost;
@@ -256,10 +256,10 @@ namespace System.ComponentModel.Design.Serialization {
                 }
             }
 
-            /// <devdoc>
-            ///    A collection of custom supported cultures.  This can be null, indicating that the
-            ///    type converter should use the default set of supported cultures.
-            /// </devdoc>
+            /// <summary>
+            ///  A collection of custom supported cultures.  This can be null, indicating that the
+            ///  type converter should use the default set of supported cultures.
+            /// </summary>
             /// <value></value>
             internal TypeConverter.StandardValuesCollection SupportedCultures {
                 get {
@@ -267,9 +267,9 @@ namespace System.ComponentModel.Design.Serialization {
                 }
             }
 
-            /// <devdoc>
-            ///    Returns the current default language for the thread.
-            /// </devdoc>
+            /// <summary>
+            ///  Returns the current default language for the thread.
+            /// </summary>
             private CultureInfo ThreadDefaultLanguage {
                 get {
                     if (_defaultLanguage == null) {
@@ -279,10 +279,10 @@ namespace System.ComponentModel.Design.Serialization {
                 }
             }
 
-            /// <devdoc>
-            ///     Broadcasts a global change, indicating that all 
-            ///     objects on the designer have changed.
-            /// </devdoc>
+            /// <summary>
+            ///  Broadcasts a global change, indicating that all 
+            ///  objects on the designer have changed.
+            /// </summary>
             private void BroadcastGlobalChange(IComponent comp) {
                 ISite site = comp.Site;
                 if (site != null) {
@@ -298,14 +298,14 @@ namespace System.ComponentModel.Design.Serialization {
                 }
             }
 
-            /// <devdoc>
-            ///     This method compares the current root component
-            ///     with the last one we saw.  If they don't match,
-            ///     that means the designer has reloaded and we
-            ///     should set all of our properties back to their
-            ///     defaults.  This is more efficient than syncing
-            ///     an event.
-            /// </devdoc>
+            /// <summary>
+            ///  This method compares the current root component
+            ///  with the last one we saw.  If they don't match,
+            ///  that means the designer has reloaded and we
+            ///  should set all of our properties back to their
+            ///  defaults.  This is more efficient than syncing
+            ///  an event.
+            /// </summary>
             private void CheckRoot() {
                 if (_host != null && _host.RootComponent != _lastRoot) {
                     _lastRoot = _host.RootComponent;
@@ -315,9 +315,9 @@ namespace System.ComponentModel.Design.Serialization {
                 }
             }
 
-            /// <devdoc>
-            ///    Gets the language set for the specified object.
-            /// </devdoc>
+            /// <summary>
+            ///  Gets the language set for the specified object.
+            /// </summary>
             [DesignOnly(true)]
             [TypeConverter(typeof(LanguageCultureInfoConverter))]
             [Category("Design")]
@@ -327,9 +327,9 @@ namespace System.ComponentModel.Design.Serialization {
                 return _language;
             }
 
-            /// <devdoc>
-            ///    Gets the language we'll use when re-loading the designer.
-            /// </devdoc>
+            /// <summary>
+            ///  Gets the language we'll use when re-loading the designer.
+            /// </summary>
             [DesignOnly(true)]
             [Browsable(false)]
             [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -345,10 +345,10 @@ namespace System.ComponentModel.Design.Serialization {
                 return _loadLanguage;
             }
 
-            /// <devdoc>
-            ///    Gets a value indicating whether the specified object supports design-time localization 
-            ///     support.
-            /// </devdoc>
+            /// <summary>
+            ///  Gets a value indicating whether the specified object supports design-time localization 
+            ///  support.
+            /// </summary>
             [DesignOnly(true)]
             [Category("Design")]
             [SRDescriptionAttribute("LocalizationProviderLocalizableDescr")]
@@ -357,10 +357,10 @@ namespace System.ComponentModel.Design.Serialization {
                 return _localizable;
             }
 
-            /// <devdoc>
-            ///    Sets the language to use.  When the language is set the designer will be
-            ///    reloaded.
-            /// </devdoc>
+            /// <summary>
+            ///  Sets the language to use.  When the language is set the designer will be
+            ///  reloaded.
+            /// </summary>
             public void SetLanguage(IComponent o, CultureInfo language) {
                 CheckRoot();
                 if (language == null) {
@@ -405,10 +405,10 @@ namespace System.ComponentModel.Design.Serialization {
                 }
             }
 
-            /// <devdoc>
-            ///    Sets a value indicating whether or not the specified object has design-time 
-            ///    localization support.
-            /// </devdoc>
+            /// <summary>
+            ///  Sets a value indicating whether or not the specified object has design-time 
+            ///  localization support.
+            /// </summary>
             public void SetLocalizable(IComponent o, bool localizable) {
                 CheckRoot();
 
@@ -425,37 +425,37 @@ namespace System.ComponentModel.Design.Serialization {
                 }
             }
 
-            /// <devdoc>
-            ///    Gets a value indicating whether the specified object should have its design-time localization support persisted.
-            /// </devdoc>
+            /// <summary>
+            ///  Gets a value indicating whether the specified object should have its design-time localization support persisted.
+            /// </summary>
             private bool ShouldSerializeLanguage(IComponent o) {
                 return (_language != null && _language != CultureInfo.InvariantCulture);
             }
 
-            /// <devdoc>
-            ///    Gets a value indicating whether the specified object should have its design-time localization support persisted.
-            /// </devdoc>
+            /// <summary>
+            ///  Gets a value indicating whether the specified object should have its design-time localization support persisted.
+            /// </summary>
             private bool ShouldSerializeLocalizable(IComponent o) {
                 return (_localizable);
             }
 
-            /// <devdoc>
-            ///    Resets the localizable property to the 'defaultLocalizable' value.
-            /// </devdoc>
+            /// <summary>
+            ///  Resets the localizable property to the 'defaultLocalizable' value.
+            /// </summary>
             private void ResetLocalizable(IComponent o) {
                 SetLocalizable(o, false);
             }
 
-            /// <devdoc>
-            ///    Resets the language for the specified object.
-            /// </devdoc>
+            /// <summary>
+            ///  Resets the language for the specified object.
+            /// </summary>
             private  void ResetLanguage(IComponent o) {
                 SetLanguage(o, CultureInfo.InvariantCulture);
             }
 
-            /// <devdoc>
-            ///    We only extend the root component.
-            /// </devdoc>
+            /// <summary>
+            ///  We only extend the root component.
+            /// </summary>
             public bool CanExtend(object o) {
                 CheckRoot();
                 return (_host != null && o == _host.RootComponent); 
@@ -463,26 +463,26 @@ namespace System.ComponentModel.Design.Serialization {
         }
 
         #region LanguageCultureInfoConverter 
-        /// <devdoc>
-        ///    This is a culture info converter that knows how to provide
-        ///    a restricted list of cultures based on the SupportedCultures
-        ///    property of the extender.  If the extender can't be found
-        ///    or the SupportedCultures property returns null, this 
-        ///    defaults to the stock implementation.
-        /// </devdoc>
+        /// <summary>
+        ///  This is a culture info converter that knows how to provide
+        ///  a restricted list of cultures based on the SupportedCultures
+        ///  property of the extender.  If the extender can't be found
+        ///  or the SupportedCultures property returns null, this 
+        ///  defaults to the stock implementation.
+        /// </summary>
         internal sealed class LanguageCultureInfoConverter: CultureInfoConverter {
 
-            /// <devdoc>
-            ///      Retrieves the Name for a input CultureInfo.
-            /// </devdoc>
+            /// <summary>
+            ///  Retrieves the Name for a input CultureInfo.
+            /// </summary>
             protected override string GetCultureName(CultureInfo culture) {
                 return culture.DisplayName;
             }
             
-            /// <devdoc>
-            ///       Gets a collection of standard values collection for a System.Globalization.CultureInfo
-            ///       object using the specified context.
-            /// </devdoc>
+            /// <summary>
+            ///  Gets a collection of standard values collection for a System.Globalization.CultureInfo
+            ///  object using the specified context.
+            /// </summary>
             public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context) {
 
                 StandardValuesCollection values = null;

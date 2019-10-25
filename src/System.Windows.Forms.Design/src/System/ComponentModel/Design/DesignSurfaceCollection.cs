@@ -1,144 +1,101 @@
-//------------------------------------------------------------------------------
-// <copyright file="DesignSurfaceCollection.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
-//------------------------------------------------------------------------------
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
-namespace System.ComponentModel.Design {
+using System.Collections;
 
-    using System;
-    using System.Collections;
-    using System.ComponentModel;
-    using System.ComponentModel.Design;
-    using System.Design;
-    using System.Diagnostics;
+namespace System.ComponentModel.Design
+{
+    /// <summary>
+    ///  Provides a read-only collection of design surfaces.
+    /// </summary>
+    public sealed class DesignSurfaceCollection : ICollection
+    {
+        private readonly DesignerCollection _designers;
 
-
-    /// <include file='doc\DesignSurfaceCollection.uex' path='docs/doc[@for="DesignSurfaceCollection.DesignSurfaceCollection"]/*' />
-    /// <devdoc>
-    ///     Provides a read-only collection of design surfaces.
-    /// </devdoc>
-    public sealed class DesignSurfaceCollection : ICollection {
-
-        private DesignerCollection _designers;
-
-        /// <devdoc>
-        ///     Initializes a new instance of the DesignSurfaceCollection class
-        /// </devdoc>
-        internal DesignSurfaceCollection(DesignerCollection designers) {
-            _designers = designers;
-
-            if (_designers == null) {
-                _designers = new DesignerCollection(null);
-            }
+        /// <summary>
+        ///  Initializes a new instance of the DesignSurfaceCollection class
+        /// </summary>
+        internal DesignSurfaceCollection(DesignerCollection designers)
+        {
+            _designers = designers ?? new DesignerCollection(null);
         }
 
-        /// <include file='doc\DesignSurfaceCollection.uex' path='docs/doc[@for="DesignSurfaceCollection.DesignSurfaceCollection.Count"]/*' />
-        /// <devdoc>
-        ///    Gets number of design surfaces in the collection.
-        /// </devdoc>
-        public int Count {
-            get {
-                return _designers.Count;
-            }
-        }
+        /// <summary>
+        ///  Gets number of design surfaces in the collection.
+        /// </summary>
+        public int Count => _designers.Count;
 
-        /// <include file='doc\DesignSurfaceCollection.uex' path='docs/doc[@for="DesignSurfaceCollection.DesignSurfaceCollection.this"]/*' />
-        /// <devdoc>
-        ///     Gets or sets the document at the specified index.
-        /// </devdoc>
-        public DesignSurface this[int index] {
-            get {
+        /// <summary>
+        ///  Gets or sets the document at the specified index.
+        /// </summary>
+        public DesignSurface this[int index]
+        {
+            get
+            {
                 IDesignerHost host = _designers[index];
-                DesignSurface surface = host.GetService(typeof(DesignSurface)) as DesignSurface;
-                if (surface == null) {
-                    throw new NotSupportedException();
+                if (host.GetService(typeof(DesignSurface)) is DesignSurface surface)
+                {
+                    return surface;
                 }
-                return surface;
+
+                throw new NotSupportedException();
             }
         }
 
-        /// <include file='doc\DesignSurfaceCollection.uex' path='docs/doc[@for="DesignSurfaceCollection.DesignSurfaceCollection.GetEnumerator"]/*' />
-        /// <devdoc>
-        ///     Creates and retrieves a new enumerator for this collection.
-        /// </devdoc>
-        public IEnumerator GetEnumerator() {
-            return new DesignSurfaceEnumerator(_designers.GetEnumerator());
-        }
+        /// <summary>
+        ///  Creates and retrieves a new enumerator for this collection.
+        /// </summary>
+        public IEnumerator GetEnumerator() => new DesignSurfaceEnumerator(_designers.GetEnumerator());
 
-        /// <include file='doc\DesignSurfaceCollection.uex' path='docs/doc[@for="DesignSurfaceCollection.DesignSurfaceCollection.ICollection.Count"]/*' />
-        /// <internalonly/>
-        int ICollection.Count {
-            get {
-                return Count;
-            }
-        }
+        int ICollection.Count => Count;
 
-        /// <include file='doc\DesignSurfaceCollection.uex' path='docs/doc[@for="DesignSurfaceCollection.DesignSurfaceCollection.ICollection.IsSynchronized"]/*' />
-        /// <internalonly/>
-        bool ICollection.IsSynchronized {
-            get {
-                return false;
-            }
-        }
+        bool ICollection.IsSynchronized => false;
 
-        /// <include file='doc\DesignSurfaceCollection.uex' path='docs/doc[@for="DesignSurfaceCollection.DesignSurfaceCollection.ICollection.SyncRoot"]/*' />
-        /// <internalonly/>
-        object ICollection.SyncRoot {
-            get {
-                return null;
-            }
-        }
+        object ICollection.SyncRoot => null;
 
-        /// <include file='doc\DesignSurfaceCollection.uex' path='docs/doc[@for="DesignSurfaceCollection.DesignSurfaceCollection.ICollection.CopyTo"]/*' />
-        /// <internalonly/>
-        void ICollection.CopyTo(Array array, int index) {
-            foreach(DesignSurface surface in this) {
+        void ICollection.CopyTo(Array array, int index)
+        {
+            foreach (DesignSurface surface in this)
+            {
                 array.SetValue(surface, index++);
             }
         }
 
-        public void CopyTo(DesignSurface[] array, int index) {
-            ((ICollection)this).CopyTo(array, index);
-        }
+        public void CopyTo(DesignSurface[] array, int index) => ((ICollection)this).CopyTo(array, index);
 
-        /// <include file='doc\DesignSurfaceCollection.uex' path='docs/doc[@for="DesignSurfaceCollection.DesignSurfaceCollection.IEnumerable.GetEnumerator"]/*' />
-        /// <internalonly/>
-        IEnumerator IEnumerable.GetEnumerator() {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        /// <devdoc>
-        ///     Enumerator that performs the conversion from designer host 
-        ///     to design surface.
-        /// </devdoc>
-        private class DesignSurfaceEnumerator : IEnumerator {
+        /// <summary>
+        ///  Enumerator that performs the conversion from designer host 
+        ///  to design surface.
+        /// </summary>
+        private class DesignSurfaceEnumerator : IEnumerator
+        {
+            private readonly IEnumerator _designerEnumerator;
 
-            private IEnumerator _designerEnumerator;
-
-            internal DesignSurfaceEnumerator(IEnumerator designerEnumerator) {
+            internal DesignSurfaceEnumerator(IEnumerator designerEnumerator)
+            {
                 _designerEnumerator = designerEnumerator;
             }
 
-            public object Current { 
-                get {
+            public object Current
+            {
+                get
+                {
                     IDesignerHost host = (IDesignerHost)_designerEnumerator.Current;
-
-                    DesignSurface surface = host.GetService(typeof(DesignSurface)) as DesignSurface;
-                    if (surface == null) {
-                        throw new NotSupportedException();
+                    if (host.GetService(typeof(DesignSurface)) is DesignSurface surface)
+                    {
+                        return surface;
                     }
-                    return surface;
+
+                    throw new NotSupportedException();
                 }
             }
 
-            public bool MoveNext() {
-                return _designerEnumerator.MoveNext();
-            }
+            public bool MoveNext() => _designerEnumerator.MoveNext();
 
-            public void Reset() {
-                _designerEnumerator.Reset();
-            }
+            public void Reset() => _designerEnumerator.Reset();
         }
     }
 }

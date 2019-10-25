@@ -16,10 +16,10 @@ namespace System.ComponentModel.Design.Serialization {
     using System.Windows.Forms;
     using System.Windows.Forms.Design;
 
-    /// <devdoc>
-    ///    This serializer replaces the property serializer for properties when we're
-    ///    in localization mode.
-    /// </devdoc>
+    /// <summary>
+    ///  This serializer replaces the property serializer for properties when we're
+    ///  in localization mode.
+    /// </summary>
 	internal class ResourcePropertyMemberCodeDomSerializer : MemberCodeDomSerializer {
         private CodeDomLocalizationModel _model;
         private MemberCodeDomSerializer _serializer;
@@ -35,10 +35,10 @@ namespace System.ComponentModel.Design.Serialization {
             _model = model; 
     }
 
-        /// <devdoc>
-        ///    This method actually performs the serialization.  When the member is serialized
-        ///    the necessary statements will be added to the statements collection.
-        /// </devdoc>
+        /// <summary>
+        ///  This method actually performs the serialization.  When the member is serialized
+        ///  the necessary statements will be added to the statements collection.
+        /// </summary>
         public override void Serialize(IDesignerSerializationManager manager, object value, MemberDescriptor descriptor, CodeStatementCollection statements) {
 
             // We push the localization model to indicate that our serializer is in control.  Our
@@ -81,10 +81,10 @@ namespace System.ComponentModel.Design.Serialization {
             }
         }
 
-        /// <devdoc>
-        ///    This method returns true if the given member descriptor should be serialized,
-        ///    or false if there is no need to serialize the member.
-        /// </devdoc>
+        /// <summary>
+        ///  This method returns true if the given member descriptor should be serialized,
+        ///  or false if there is no need to serialize the member.
+        /// </summary>
         public override bool ShouldSerialize(IDesignerSerializationManager manager, object value, MemberDescriptor descriptor) {
             bool shouldSerialize = _serializer.ShouldSerialize(manager, value, descriptor);
 
