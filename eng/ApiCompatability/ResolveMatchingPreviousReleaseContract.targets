@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <Target Name="ResolveMatchingPreviousReleaseContract" BeforeTargets="ResolveAssemblyReferences">
+  <Target Name="ResolveMatchingPreviousReleaseContract" BeforeTargets="ResolveAssemblyReferences" Condition="'$(AvoidRunningResolveMatchingPreviousReleaseContract)' == 'false'">
     <Error Condition="!Exists('$(PreviousReleaseStableApiProject)')" Text="Error, failed to locate '$(PreviousReleaseStableApiProject)'" />
     <MSBuild Projects="$(PreviousReleaseStableApiProject)"
              Targets="GetPreviousReleaseContract"

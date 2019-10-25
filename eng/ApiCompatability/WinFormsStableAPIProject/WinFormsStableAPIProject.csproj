@@ -1,8 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AvoidRunningResolveMatchingPreviousReleaseContract>true</AvoidRunningResolveMatchingPreviousReleaseContract>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -27,7 +30,6 @@
       <_contractReferencePath Include="@(ReferencePath)" Condition="'%(FileName)' == '$(ContractName)'" />
       <_contractReferencePath DependencyPaths="@(_allReferenceDirectories)" />
     </ItemGroup>
-    <Error Condition="'@(_contractReferencePath)' == ''" Text="Could not locate $(ContractName)" />
   </Target>
 
   <Target Name="Build">
