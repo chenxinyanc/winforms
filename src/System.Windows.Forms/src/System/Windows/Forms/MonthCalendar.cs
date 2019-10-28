@@ -1134,7 +1134,7 @@ namespace System.Windows.Forms
                                                               "value"));
                 }
                 titleBackColor = value;
-                SetControlColor((int)ComCtl32.MCSC.TITLEBK, value);
+                SetControlColor(ComCtl32.MCSC.TITLEBK, value);
             }
         }
 
@@ -1160,7 +1160,7 @@ namespace System.Windows.Forms
                                                               "value"));
                 }
                 titleForeColor = value;
-                SetControlColor((int)ComCtl32.MCSC.TITLETEXT, value);
+                SetControlColor(ComCtl32.MCSC.TITLETEXT, value);
             }
         }
 
@@ -1186,7 +1186,7 @@ namespace System.Windows.Forms
                                                               "value"));
                 }
                 trailingForeColor = value;
-                SetControlColor((int)ComCtl32.MCSC.TRAILINGTEXT, value);
+                SetControlColor(ComCtl32.MCSC.TRAILINGTEXT, value);
             }
         }
 
@@ -1640,11 +1640,11 @@ namespace System.Windows.Forms
                 UnsafeNativeMethods.SendMessage(new HandleRef(this, Handle), (int)ComCtl32.MCM.SETTODAY, 0, st);
             }
 
-            SetControlColor((int)ComCtl32.MCSC.TEXT, ForeColor);
-            SetControlColor((int)ComCtl32.MCSC.MONTHBK, BackColor);
-            SetControlColor((int)ComCtl32.MCSC.TITLEBK, titleBackColor);
-            SetControlColor((int)ComCtl32.MCSC.TITLETEXT, titleForeColor);
-            SetControlColor((int)ComCtl32.MCSC.TRAILINGTEXT, trailingForeColor);
+            SetControlColor(ComCtl32.MCSC.TEXT, ForeColor);
+            SetControlColor(ComCtl32.MCSC.MONTHBK, BackColor);
+            SetControlColor(ComCtl32.MCSC.TITLEBK, titleBackColor);
+            SetControlColor(ComCtl32.MCSC.TITLETEXT, titleForeColor);
+            SetControlColor(ComCtl32.MCSC.TRAILINGTEXT, trailingForeColor);
 
             int firstDay;
             if (firstDayOfWeek == Day.Default)
@@ -1708,13 +1708,13 @@ namespace System.Windows.Forms
         protected override void OnForeColorChanged(EventArgs e)
         {
             base.OnForeColorChanged(e);
-            SetControlColor((int)ComCtl32.MCSC.TEXT, ForeColor);
+            SetControlColor(ComCtl32.MCSC.TEXT, ForeColor);
         }
 
         protected override void OnBackColorChanged(EventArgs e)
         {
             base.OnBackColorChanged(e);
-            SetControlColor((int)ComCtl32.MCSC.MONTHBK, BackColor);
+            SetControlColor(ComCtl32.MCSC.MONTHBK, BackColor);
         }
 
         [EditorBrowsable(EditorBrowsableState.Advanced)]
@@ -2001,11 +2001,11 @@ namespace System.Windows.Forms
         /// <summary>
         ///  If the handle has been created, this applies the color to the control
         /// </summary>
-        private void SetControlColor(int colorIndex, Color value)
+        private void SetControlColor(ComCtl32.MCSC colorIndex, Color value)
         {
             if (IsHandleCreated)
             {
-                SendMessage((int)ComCtl32.MCM.SETCOLOR, colorIndex, ColorTranslator.ToWin32(value));
+                SendMessage((int)ComCtl32.MCM.SETCOLOR, (int)colorIndex, ColorTranslator.ToWin32(value));
             }
         }
 

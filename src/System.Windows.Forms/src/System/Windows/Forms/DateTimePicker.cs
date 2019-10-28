@@ -221,7 +221,7 @@ namespace System.Windows.Forms
                 if (!value.Equals(calendarForeColor))
                 {
                     calendarForeColor = value;
-                    SetControlColor((int)Interop.ComCtl32.MCSC.TEXT, value);
+                    SetControlColor(ComCtl32.MCSC.TEXT, value);
                 }
             }
         }
@@ -300,7 +300,7 @@ namespace System.Windows.Forms
                 if (!value.Equals(calendarTitleBackColor))
                 {
                     calendarTitleBackColor = value;
-                    SetControlColor((int)ComCtl32.MCSC.TITLEBK, value);
+                    SetControlColor(ComCtl32.MCSC.TITLEBK, value);
                 }
             }
         }
@@ -329,7 +329,7 @@ namespace System.Windows.Forms
                 if (!value.Equals(calendarTitleForeColor))
                 {
                     calendarTitleForeColor = value;
-                    SetControlColor((int)ComCtl32.MCSC.TITLETEXT, value);
+                    SetControlColor(ComCtl32.MCSC.TITLETEXT, value);
                 }
             }
         }
@@ -358,7 +358,7 @@ namespace System.Windows.Forms
                 if (!value.Equals(calendarTrailingText))
                 {
                     calendarTrailingText = value;
-                    SetControlColor((int)ComCtl32.MCSC.TRAILINGTEXT, value);
+                    SetControlColor(ComCtl32.MCSC.TRAILINGTEXT, value);
                 }
             }
         }
@@ -387,7 +387,7 @@ namespace System.Windows.Forms
                 if (!value.Equals(calendarMonthBackground))
                 {
                     calendarMonthBackground = value;
-                    SetControlColor((int)ComCtl32.MCSC.MONTHBK, value);
+                    SetControlColor(ComCtl32.MCSC.MONTHBK, value);
                 }
             }
         }
@@ -1401,11 +1401,11 @@ namespace System.Windows.Forms
         /// <summary>
         ///  If the handle has been created, this applies the color to the control
         /// </summary>
-        private void SetControlColor(int colorIndex, Color value)
+        private void SetControlColor(Interop.ComCtl32.MCSC colorIndex, Color value)
         {
             if (IsHandleCreated)
             {
-                SendMessage(NativeMethods.DTM_SETMCCOLOR, colorIndex, ColorTranslator.ToWin32(value));
+                SendMessage(NativeMethods.DTM_SETMCCOLOR, (int)colorIndex, ColorTranslator.ToWin32(value));
             }
         }
 
@@ -1425,11 +1425,11 @@ namespace System.Windows.Forms
         /// </summary>
         private void SetAllControlColors()
         {
-            SetControlColor((int)ComCtl32.MCSC.MONTHBK, calendarMonthBackground);
-            SetControlColor((int)ComCtl32.MCSC.TEXT, calendarForeColor);
-            SetControlColor((int)ComCtl32.MCSC.TITLEBK, calendarTitleBackColor);
-            SetControlColor((int)ComCtl32.MCSC.TITLETEXT, calendarTitleForeColor);
-            SetControlColor((int)ComCtl32.MCSC.TRAILINGTEXT, calendarTrailingText);
+            SetControlColor(ComCtl32.MCSC.MONTHBK, calendarMonthBackground);
+            SetControlColor(ComCtl32.MCSC.TEXT, calendarForeColor);
+            SetControlColor(ComCtl32.MCSC.TITLEBK, calendarTitleBackColor);
+            SetControlColor(ComCtl32.MCSC.TITLETEXT, calendarTitleForeColor);
+            SetControlColor(ComCtl32.MCSC.TRAILINGTEXT, calendarTrailingText);
         }
 
         /// <summary>

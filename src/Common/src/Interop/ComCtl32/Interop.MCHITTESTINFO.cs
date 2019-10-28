@@ -12,7 +12,7 @@ internal static partial class Interop
         /// <see cref="https://docs.microsoft.com/en-us/windows/win32/api/commctrl/ns-commctrl-mchittestinfo"/>
         /// </summary>
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        public class MCHITTESTINFO
+        public struct MCHITTESTINFO
         {
             public int cbSize;
             public POINT pt;
