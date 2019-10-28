@@ -33,19 +33,15 @@ namespace System.Windows.Forms
 
             internal override UnsafeNativeMethods.IRawElementProviderSimple ContainingGrid => _calendarAccessibleObject;
 
-            internal override int[] RuntimeId
-            {
-                get
+            internal override int[] RuntimeId =>
+                new int[5]
                 {
-                    int[] runtimeId = new int[5];
-                    runtimeId[0] = RuntimeIDFirstItem;
-                    runtimeId[1] = _calendarAccessibleObject.Owner.Handle.ToInt32();
-                    runtimeId[2] = Parent.Parent.GetChildId();
-                    runtimeId[3] = Parent.GetChildId();
-                    runtimeId[4] = GetChildId();
-                    return runtimeId;
-                }
-            }
+                    RuntimeIDFirstItem,
+                    _calendarAccessibleObject.Owner.Handle.ToInt32(),
+                    Parent.Parent.GetChildId(),
+                    Parent.GetChildId(),
+                    GetChildId()
+                };
 
             protected override RECT CalculateBoundingRectangle()
             {

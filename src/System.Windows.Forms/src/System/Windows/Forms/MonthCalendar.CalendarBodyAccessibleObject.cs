@@ -54,8 +54,7 @@ namespace System.Windows.Forms
                     case ComCtl32.MCHT.CALENDARDATE:
                         AccessibleObject rowAccessibleObject =
                             _calendarAccessibleObject.GetCalendarChildAccessibleObject(_calendarIndex, CalendarChildType.CalendarRow, this, hitTestInfo.iRow);
-                        return
-                            _calendarAccessibleObject.GetCalendarChildAccessibleObject(_calendarIndex, CalendarChildType.CalendarCell, rowAccessibleObject, hitTestInfo.iCol);
+                        return _calendarAccessibleObject.GetCalendarChildAccessibleObject(_calendarIndex, CalendarChildType.CalendarCell, rowAccessibleObject, hitTestInfo.iCol);
                 }
 
                 return this;

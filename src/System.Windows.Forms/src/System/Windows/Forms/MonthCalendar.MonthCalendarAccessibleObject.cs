@@ -489,9 +489,9 @@ namespace System.Windows.Forms
                     + "dwFlags has flag bits other that MCGIF_DATE and MCGIF_RECT");
 
                 ComCtl32.MCGRIDINFO gridInfo = new ComCtl32.MCGRIDINFO();
-                gridInfo.dwFlags = (uint)dwFlags;
+                gridInfo.dwFlags = dwFlags;
                 gridInfo.cbSize = (uint)Marshal.SizeOf(gridInfo);
-                gridInfo.dwPart = (uint)dwPart;
+                gridInfo.dwPart = dwPart;
                 gridInfo.iCalendar = calendarIndex;
                 gridInfo.iCol = column;
                 gridInfo.iRow = row;
@@ -520,10 +520,10 @@ namespace System.Windows.Forms
                 // Do not use this if gridInfo.dwFlags contains MCGIF_NAME;
                 // use GetCalendarGridInfoText() instead.
                 Debug.Assert(
-                    (gridInfo.dwFlags & (uint)ComCtl32.MCGIF.NAME) == 0,
+                    (gridInfo.dwFlags & ComCtl32.MCGIF.NAME) == 0,
                     "Param dwFlags contains MCGIF_NAME, use GetCalendarGridInfoText() to retrieve the text of a calendar part.");
 
-                gridInfo.dwFlags &= ~(uint)ComCtl32.MCGIF.NAME;
+                gridInfo.dwFlags &= ~ComCtl32.MCGIF.NAME;
 
                 return _owner.SendMessage((int)ComCtl32.MCM.GETCALENDARGRIDINFO, 0, ref gridInfo) != IntPtr.Zero;
             }
@@ -534,7 +534,7 @@ namespace System.Windows.Forms
 
                 ComCtl32.MCGRIDINFO gridInfo = new ComCtl32.MCGRIDINFO();
                 gridInfo.cbSize = (uint)Marshal.SizeOf(gridInfo);
-                gridInfo.dwPart = (uint)dwPart;
+                gridInfo.dwPart = dwPart;
                 gridInfo.iCalendar = calendarIndex;
                 gridInfo.iCol = column;
                 gridInfo.iRow = row;
@@ -554,7 +554,7 @@ namespace System.Windows.Forms
                     gridInfo.dwFlags == 0,
                     "gridInfo.dwFlags should be 0 when calling GetCalendarGridInfoText");
 
-                gridInfo.dwFlags = (uint)ComCtl32.MCGIF.NAME;
+                gridInfo.dwFlags = ComCtl32.MCGIF.NAME;
 
                 return _owner.SendMessage((int)ComCtl32.MCM.GETCALENDARGRIDINFO, 0, ref gridInfo) != IntPtr.Zero;
             }

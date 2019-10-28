@@ -25,15 +25,8 @@ namespace System.Windows.Forms
 
             internal override int GetChildId() => ChildId;
 
-            internal override bool IsPatternSupported(int patternId)
-            {
-                if (patternId == NativeMethods.UIA_InvokePatternId)
-                {
-                    return true;
-                }
-
-                return base.IsPatternSupported(patternId);
-            }
+            internal override bool IsPatternSupported(int patternId) =>
+                (patternId == NativeMethods.UIA_InvokePatternId) || base.IsPatternSupported(patternId);
 
             internal override object GetPropertyValue(int propertyID) =>
                 propertyID switch
@@ -52,10 +45,7 @@ namespace System.Windows.Forms
                     _ => base.FragmentNavigate(direction)
                 };
 
-            internal override void Invoke()
-            {
-                RaiseMouseClick();
-            }
+            internal override void Invoke() => RaiseMouseClick();
         }
     }
 }

@@ -20,18 +20,14 @@ namespace System.Windows.Forms
 
             public int RowIndex => _rowIndex;
 
-            internal override int[] RuntimeId
-            {
-                get
+            internal override int[] RuntimeId =>
+                new int[4]
                 {
-                    int[] runtimeId = new int[4];
-                    runtimeId[0] = RuntimeIDFirstItem;
-                    runtimeId[1] = _calendarAccessibleObject.Owner.Handle.ToInt32();
-                    runtimeId[2] = Parent.GetChildId();
-                    runtimeId[3] = GetChildId();
-                    return runtimeId;
-                }
-            }
+                    RuntimeIDFirstItem,
+                    _calendarAccessibleObject.Owner.Handle.ToInt32(),
+                    Parent.GetChildId(),
+                    GetChildId()
+                };
 
             protected override RECT CalculateBoundingRectangle()
             {

@@ -41,17 +41,13 @@ namespace System.Windows.Forms
                     _ => base.FragmentNavigate(direction)
                 };
 
-            internal override int[] RuntimeId
-            {
-                get
+            internal override int[] RuntimeId =>
+                new int[]
                 {
-                    int[] runtimeId = new int[3];
-                    runtimeId[0] = RuntimeIDFirstItem;
-                    runtimeId[1] = _calendarAccessibleObject.Owner.Handle.ToInt32();
-                    runtimeId[2] = GetChildId();
-                    return runtimeId;
-                }
-            }
+                    RuntimeIDFirstItem,
+                    _calendarAccessibleObject.Owner.Handle.ToInt32(),
+                    GetChildId()
+                };
 
             public void RaiseMouseClick()
             {

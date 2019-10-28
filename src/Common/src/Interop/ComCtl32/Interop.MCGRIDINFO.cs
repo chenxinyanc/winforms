@@ -14,11 +14,11 @@ internal static partial class Interop
         /// Copied form CommCtrl.h
         /// </summary>
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        unsafe public struct MCGRIDINFO
+        public unsafe struct MCGRIDINFO
         {
             public uint cbSize;
-            public uint dwPart;
-            public uint dwFlags;
+            public MCGIP dwPart;
+            public MCGIF dwFlags;
             public int iCalendar;
             public int iRow;
             public int iCol;

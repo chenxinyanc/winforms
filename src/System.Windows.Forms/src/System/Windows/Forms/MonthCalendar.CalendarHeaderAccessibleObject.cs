@@ -46,10 +46,7 @@ namespace System.Windows.Forms
 
             internal override bool IsPatternSupported(int patternId) => (patternId == NativeMethods.UIA_InvokePatternId) || base.IsPatternSupported(patternId);
 
-            internal override void Invoke()
-            {
-                RaiseMouseClick();
-            }
+            internal override void Invoke() => RaiseMouseClick();
         }
     }
 }

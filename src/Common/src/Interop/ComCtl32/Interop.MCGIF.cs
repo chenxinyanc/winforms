@@ -2,6 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
+
 internal static partial class Interop
 {
     internal static partial class ComCtl32
@@ -10,6 +12,7 @@ internal static partial class Interop
         /// Represents MonthCalendar Control Grid Info Flags.
         /// Copied form CommCtrl.h
         /// </summary>
+        [Flags]
         public enum MCGIF
         {
             DATE = 0x00000001, // MCGIF_DATE

@@ -38,20 +38,10 @@ namespace System.Windows.Forms
                 return rectangle;
             }
 
-            internal override bool IsPatternSupported(int patternId)
-            {
-                if (patternId == NativeMethods.UIA_InvokePatternId)
-                {
-                    return true;
-                }
+            internal override bool IsPatternSupported(int patternId) =>
+                (patternId == NativeMethods.UIA_InvokePatternId) || base.IsPatternSupported(patternId);
 
-                return base.IsPatternSupported(patternId);
-            }
-
-            internal override void Invoke()
-            {
-                RaiseMouseClick();
-            }
+            internal override void Invoke() => RaiseMouseClick();
         }
     }
 }
