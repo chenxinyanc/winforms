@@ -15,9 +15,20 @@ internal static partial class Interop
         [Flags]
         public enum MCGIF
         {
-            DATE = 0x00000001, // MCGIF_DATE
-            RECT = 0x00000002, // MCGIF_RECT
-            NAME = 0x00000004  // MCGIF_NAME
+            /// <summary>
+            /// Represetns MCGIF_DATE const.
+            /// </summary>
+            DATE = 0x00000001,
+
+            /// <summary>
+            /// Represents MCGIF_RECT cosnt.
+            /// </summary>
+            RECT = 0x00000002,
+
+            /// <summary>
+            /// Represetns MCGIF_NAME const.
+            /// </summary>
+            NAME = 0x00000004
         }
     }
 }

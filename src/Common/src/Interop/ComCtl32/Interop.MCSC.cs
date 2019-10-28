@@ -12,10 +12,34 @@ internal static partial class Interop
         /// </summary>
         public enum MCSC
         {
+            /// <summary>
+            /// Represents MCSC_BACKGROUND const.
+            /// </summary>
+            BACKGROUND = 0,
+
+            /// <summary>
+            /// Represents MCSC_TEXT const.
+            /// </summary>
             TEXT = 1,
+
+            /// <summary>
+            /// Represents MCSC_TITLEBK const.
+            /// </summary>
             TITLEBK = 2,
+
+            /// <summary>
+            /// Represents MCSC_TITLETEXT const.
+            /// </summary>
             TITLETEXT = 3,
+
+            /// <summary>
+            /// Represents MCSC_MONTHBK const.
+            /// </summary>
             MONTHBK = 4,
+
+            /// <summary>
+            /// Represents MCSC_TRAILINGTEXT const.
+            /// </summary>
             TRAILINGTEXT = 5
         }
     }

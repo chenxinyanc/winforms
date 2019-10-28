@@ -45,7 +45,7 @@ namespace System.Windows.Forms
 
                 };
 
-            public CalendarChildAccessibleObject GetFromPoint(NativeMethods.MCHITTESTINFO_V6 hitTestInfo)
+            public CalendarChildAccessibleObject GetFromPoint(ComCtl32.MCHITTESTINFO hitTestInfo)
             {
                 switch ((ComCtl32.MCHT)hitTestInfo.uHit)
                 {

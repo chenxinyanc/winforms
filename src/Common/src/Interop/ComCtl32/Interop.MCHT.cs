@@ -12,22 +12,105 @@ internal static partial class Interop
         /// </summary>
         public enum MCHT
         {
-            TITLE = 0x00010000,                                             // MCHT_TITLE
-            CALENDAR = 0x00020000,                                          // MCHT_CALENDAR
-            TODAYLINK = 0x00030000,                                         // MCHT_TODAYLINK
-                                                                            //
-            TITLEBK = (MCHT.TITLE),                                         // MCHT_TITLEBK
-            TITLEMONTH = (MCHT.TITLE | 0x0001),                             // MCHT_TITLEMONTH
-            TITLEYEAR = (MCHT.TITLE | 0x0002),                              // MCHT_TITLEYEAR
-            TITLEBTNNEXT = (MCHT.TITLE | 0x01000000 | 0x0003),              // MCHT_TITLEBTNNEXT
-            TITLEBTNPREV = (MCHT.TITLE | 0x02000000 | 0x0003),              // MCHT_TITLEBTNPREV
-                                                                            //
-            CALENDARBK = (MCHT.CALENDAR),                                   // MCHT_CALENDARBK
-            CALENDARDATE = (MCHT.CALENDAR | 0x0001),                        // MCHT_CALENDARDATE
-            CALENDARDATENEXT = ((MCHT.CALENDAR | 0x0001) | 0x01000000),     // MCHT_CALENDARDATENEXT
-            CALENDARDATEPREV = ((MCHT.CALENDAR | 0x0001) | 0x02000000),     // MCHT_CALENDARDATEPREV
-            CALENDARDAY = (MCHT.CALENDAR | 0x0002),                         // MCHT_CALENDARDAY
-            CALENDARWEEKNUM = (MCHT.CALENDAR | 0x0003)                      // MCHT_CALENDARWEEKNUM
+            /// <summary>
+            /// MCHT_TITLE
+            /// </summary>
+            TITLE = 0x00010000,
+
+            /// <summary>
+            /// Represents MCHT_CALENDAR const.
+            /// </summary>
+            CALENDAR = 0x00020000,
+
+            /// <summary>
+            /// Represents MCHT_TODAYLINK const.
+            /// </summary>
+            TODAYLINK = 0x00030000,
+
+            /// <summary>
+            /// Represents MCHT_CALENDARCONTROL const.
+            /// </summary>
+            CALENDARCONTROL = 0x00100000,
+
+            /// <summary>
+            /// Represents MCHT_NEXT const.
+            /// </summary>
+            NEXT = 0x01000000,
+
+            /// <summary>
+            /// Represents MCHT_PREV const.
+            /// </summary>
+            PREV = 0x02000000,
+
+            /// <summary>
+            /// Represents MCHT_NOWHERE const.
+            /// </summary>
+            NOWHERE = 0x00000000,
+
+            /// <summary>
+            /// Represents MCHT_TITLEBK const.
+            /// </summary>
+            TITLEBK = TITLE,
+
+            /// <summary>
+            /// Represents MCHT_TITLEMONTH const.
+            /// </summary>
+            TITLEMONTH = TITLE | 0x0001,
+
+            /// <summary>
+            /// Represents MCHT_TITLEYEAR const.
+            /// </summary>
+            TITLEYEAR = TITLE | 0x0002,
+
+            /// <summary>
+            /// Represents MCHT_TITLEBTNNEXT const.
+            /// </summary>
+            TITLEBTNNEXT = TITLE | NEXT | 0x0003,
+
+            /// <summary>
+            /// Represents MCHT_TITLEBTNPREV const.
+            /// </summary>
+            TITLEBTNPREV = TITLE | PREV | 0x0003,
+
+            /// <summary>
+            /// Represents MCHT_CALENDARBK const.
+            /// </summary>
+            CALENDARBK = CALENDAR,
+
+            /// <summary>
+            /// Represents MCHT_CALENDARDATE const.
+            /// </summary>
+            CALENDARDATE = CALENDAR | 0x0001,
+
+            /// <summary>
+            /// Represents MCHT_CALENDARDATENEXT const.
+            /// </summary>
+            CALENDARDATENEXT = CALENDARDATE | NEXT,
+
+            /// <summary>
+            /// Represents MCHT_CALENDARDATEPREV const.
+            /// </summary>
+            CALENDARDATEPREV = CALENDARDATE | PREV,
+
+            /// <summary>
+            /// Represents MCHT_CALENDARDAY const.
+            /// </summary>
+            CALENDARDAY = CALENDAR | 0x0002,
+
+            /// <summary>
+            /// Represents MCHT_CALENDARWEEKNUM const.
+            /// </summary>
+            CALENDARWEEKNUM = CALENDAR | 0x0003,
+
+            /// <summary>
+            /// Represents MCHT_CALENDARDATEMIN const.
+            /// </summary>
+            CALENDARDATEMIN = CALENDAR | 0x0004,
+
+            /// <summary>
+            /// Represents MCHT_CALENDARDATEMAX const.
+            /// </summary>
+            CALENDARDATEMAX = CALENDAR | 0x0005
         }
     }
 }

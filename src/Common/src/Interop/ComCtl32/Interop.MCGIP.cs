@@ -12,15 +12,50 @@ internal static partial class Interop
         /// </summary>
         public enum MCGIP : uint
         {
-            CALENDARCONTROL = 0,   // MCGIP_CALENDARCONTROL
-            NEXT = 1,              // MCGIP_NEXT
-            PREV = 2,              // MCGIP_PREV
-            FOOTER = 3,            // MCGIP_FOOTER
-            CALENDAR = 4,          // MCGIP_CALENDAR
-            CALENDARHEADER = 5,    // MCGIP_CALENDARHEADER
-            CALENDARBODY = 6,      // MCGIP_CALENDARBODY
-            CALENDARROW = 7,       // MCGIP_CALENDARROW
-            CALENDARCELL = 8       // MCGIP_CALENDARCELL
+            /// <summary>
+            /// Represents MCGIP_CALENDARCONTROL const.
+            /// </summary>
+            CALENDARCONTROL = 0,
+
+            /// <summary>
+            /// Represents MCGIP_NEXT const.
+            /// </summary>
+            NEXT = 1,
+
+            /// <summary>
+            /// Represents MCGIP_PREV const.
+            /// </summary>
+            PREV = 2,
+
+            /// <summary>
+            /// Represents MCGIP_FOOTER const.
+            /// </summary>
+            FOOTER = 3,
+
+            /// <summary>
+            /// Represents MCGIP_CALENDAR const.
+            /// </summary>
+            CALENDAR = 4,
+
+            /// <summary>
+            /// Represents MCGIP_CALENDARHEADER const.
+            /// </summary>
+            CALENDARHEADER = 5,
+
+            /// <summary>
+            /// Represents MCGIP_CALENDARBODY const.
+            /// </summary>
+            CALENDARBODY = 6,
+
+            /// <summary>
+            /// Represents MCGIP_CALENDARROW const.
+            /// </summary>
+            CALENDARROW = 7,
+
+            /// <summary>
+            /// Represents MCGIP_CALENDARCELL const.
+            /// </summary>
+            CALENDARCELL = 8
         }
     }
 }

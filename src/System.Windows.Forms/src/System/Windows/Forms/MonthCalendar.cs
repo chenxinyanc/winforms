@@ -1058,7 +1058,7 @@ namespace System.Windows.Forms
 
                 if (IsHandleCreated)
                 {
-                    NativeMethods.SYSTEMTIME st = new NativeMethods.SYSTEMTIME();
+                    SYSTEMTIME st = new SYSTEMTIME();
                     int res = (int)UnsafeNativeMethods.SendMessage(new HandleRef(this, Handle), (int)ComCtl32.MCM.GETTODAY, 0, st);
                     Debug.Assert(res != 0, "MCM_GETTODAY failed");
                     return DateTimePicker.SysTimeToDateTime(st).Date;
@@ -1511,7 +1511,7 @@ namespace System.Windows.Forms
             SelectionRange range = new SelectionRange();
             UnsafeNativeMethods.SendMessage(new HandleRef(this, Handle), (int)ComCtl32.MCM.GETMONTHRANGE, flag, sa);
 
-            NativeMethods.SYSTEMTIME st = new NativeMethods.SYSTEMTIME
+            SYSTEMTIME st = new SYSTEMTIME
             {
                 wYear = sa.wYear1,
                 wMonth = sa.wMonth1,
@@ -1555,35 +1555,39 @@ namespace System.Windows.Forms
         /// </summary>
         public HitTestInfo HitTest(int x, int y)
         {
-            NativeMethods.MCHITTESTINFO mchi = new NativeMethods.MCHITTESTINFO
+            ComCtl32.MCHITTESTINFO mchi = new ComCtl32.MCHITTESTINFO
             {
-                pt_x = x,
-                pt_y = y,
-                cbSize = Marshal.SizeOf<NativeMethods.MCHITTESTINFO>()
+                pt = new POINT
+                {
+                    x = x,
+                    y = y
+                },
+                st = new SYSTEMTIME(),
+                cbSize = Marshal.SizeOf<ComCtl32.MCHITTESTINFO>()
             };
-            UnsafeNativeMethods.SendMessage(new HandleRef(this, Handle), (int)ComCtl32.MCM.HITTEST, 0, mchi);
+            UnsafeNativeMethods.SendMessage(new HandleRef(this, Handle), (int)ComCtl32.MCM.HITTEST, 0, ref mchi);
 
             // If the hit area has an associated valid date, get it
             //
             HitArea hitArea = GetHitArea(mchi.uHit);
             if (HitTestInfo.HitAreaHasValidDateTime(hitArea))
             {
-                NativeMethods.SYSTEMTIME sys = new NativeMethods.SYSTEMTIME
+                SYSTEMTIME sys = new SYSTEMTIME
                 {
-                    wYear = mchi.st_wYear,
-                    wMonth = mchi.st_wMonth,
-                    wDayOfWeek = mchi.st_wDayOfWeek,
-                    wDay = mchi.st_wDay,
-                    wHour = mchi.st_wHour,
-                    wMinute = mchi.st_wMinute,
-                    wSecond = mchi.st_wSecond,
-                    wMilliseconds = mchi.st_wMilliseconds
+                    wYear = mchi.st.wYear,
+                    wMonth = mchi.st.wMonth,
+                    wDayOfWeek = mchi.st.wDayOfWeek,
+                    wDay = mchi.st.wDay,
+                    wHour = mchi.st.wHour,
+                    wMinute = mchi.st.wMinute,
+                    wSecond = mchi.st.wSecond,
+                    wMilliseconds = mchi.st.wMilliseconds
                 };
-                return new HitTestInfo(new Point(mchi.pt_x, mchi.pt_y), hitArea, DateTimePicker.SysTimeToDateTime(sys));
+                return new HitTestInfo(new Point(mchi.pt.x, mchi.pt.y), hitArea, DateTimePicker.SysTimeToDateTime(sys));
             }
             else
             {
-                return new HitTestInfo(new Point(mchi.pt_x, mchi.pt_y), hitArea);
+                return new HitTestInfo(new Point(mchi.pt.x, mchi.pt.y), hitArea);
             }
         }
 
@@ -1632,7 +1636,7 @@ namespace System.Windows.Forms
 
             if (todayDateSet)
             {
-                NativeMethods.SYSTEMTIME st = DateTimePicker.DateTimeToSysTime(todayDate);
+                SYSTEMTIME st = DateTimePicker.DateTimeToSysTime(todayDate);
                 UnsafeNativeMethods.SendMessage(new HandleRef(this, Handle), (int)ComCtl32.MCM.SETTODAY, 0, st);
             }
 
@@ -2043,7 +2047,7 @@ namespace System.Windows.Forms
 
                 NativeMethods.SYSTEMTIMEARRAY sa = new NativeMethods.SYSTEMTIMEARRAY();
                 flag |= NativeMethods.GDTR_MIN | NativeMethods.GDTR_MAX;
-                NativeMethods.SYSTEMTIME sys = DateTimePicker.DateTimeToSysTime(minDate);
+                SYSTEMTIME sys = DateTimePicker.DateTimeToSysTime(minDate);
                 sa.wYear1 = sys.wYear;
                 sa.wMonth1 = sys.wMonth;
                 sa.wDayOfWeek1 = sys.wDayOfWeek;
@@ -2196,7 +2200,7 @@ namespace System.Windows.Forms
             {
                 NativeMethods.SYSTEMTIMEARRAY sa = new NativeMethods.SYSTEMTIMEARRAY();
 
-                NativeMethods.SYSTEMTIME sys = DateTimePicker.DateTimeToSysTime(lower);
+                SYSTEMTIME sys = DateTimePicker.DateTimeToSysTime(lower);
                 sa.wYear1 = sys.wYear;
                 sa.wMonth1 = sys.wMonth;
                 sa.wDayOfWeek1 = sys.wDayOfWeek;
@@ -2309,7 +2313,7 @@ namespace System.Windows.Forms
         {
             if (IsHandleCreated)
             {
-                NativeMethods.SYSTEMTIME st = null;
+                SYSTEMTIME st = null;
                 if (todayDateSet)
                 {
                     st = DateTimePicker.DateTimeToSysTime(todayDate);

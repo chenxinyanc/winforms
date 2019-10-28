@@ -12,23 +12,90 @@ internal static partial class Interop
         /// </summary>
         public enum MCM
         {
-            FIRST = 0x1000,                            // MCM_FIRST
-            GETCURSEL = (MCM.FIRST + 1),               // MCM_GETCURSEL
-            SETMAXSELCOUNT = (MCM.FIRST + 4),          // MCM_SETMAXSELCOUNT
-            GETSELRANGE = (MCM.FIRST + 5),             // MCM_GETSELRANGE
-            SETSELRANGE = (MCM.FIRST + 6),             // MCM_SETSELRANGE
-            GETMONTHRANGE = (MCM.FIRST + 7),           // MCM_GETMONTHRANGE
-            GETMINREQRECT = (MCM.FIRST + 9),           // MCM_GETMINREQRECT
-            SETCOLOR = (MCM.FIRST + 10),               // MCM_SETCOLOR
-            SETTODAY = (MCM.FIRST + 12),               // MCM_SETTODAY
-            GETTODAY = (MCM.FIRST + 13),               // MCM_GETTODAY
-            HITTEST = (MCM.FIRST + 14),                // MCM_HITTEST
-            SETFIRSTDAYOFWEEK = (MCM.FIRST + 15),      // MCM_SETFIRSTDAYOFWEEK
-            GETRANGE = (MCM.FIRST + 17),               // MCM_GETRANGE
-            SETRANGE = (MCM.FIRST + 18),               // MCM_SETRANGE
-            SETMONTHDELTA = (MCM.FIRST + 20),          // MCM_SETMONTHDELTA
-            GETMAXTODAYWIDTH = (MCM.FIRST + 21),       // MCM_GETMAXTODAYWIDTH
-            GETCALENDARGRIDINFO = (MCM.FIRST + 24)     // MCM_GETCALENDARGRIDINFO
+            /// <summary>
+            /// Represents MCM_FIRST const.
+            /// </summary>
+            FIRST = 0x1000,
+
+            /// <summary>
+            /// Represents MCM_GETCURSEL const.
+            /// </summary>
+            GETCURSEL = FIRST + 1,
+
+            /// <summary>
+            /// Represents MCM_SETMAXSELCOUNT const.
+            /// </summary>
+            SETMAXSELCOUNT = FIRST + 4,
+
+            /// <summary>
+            /// Represents MCM_GETSELRANGE const.
+            /// </summary>
+            GETSELRANGE = FIRST + 5,
+
+            /// <summary>
+            /// Represents MCM_SETSELRANGE const.
+            /// </summary>
+            SETSELRANGE = FIRST + 6,
+
+            /// <summary>
+            /// Represents MCM_GETMONTHRANGE const.
+            /// </summary>
+            GETMONTHRANGE = FIRST + 7,
+
+            /// <summary>
+            /// Represents MCM_GETMINREQRECT const.
+            /// </summary>
+            GETMINREQRECT = FIRST + 9,
+
+            /// <summary>
+            /// Represents MCM_SETCOLOR const.
+            /// </summary>
+            SETCOLOR = FIRST + 10,
+
+            /// <summary>
+            /// Represents MCM_SETTODAY const.
+            /// </summary>
+            SETTODAY = FIRST + 12,
+
+            /// <summary>
+            /// Represents MCM_GETTODAY const.
+            /// </summary>
+            GETTODAY = FIRST + 13,
+
+            /// <summary>
+            /// Represents MCM_HITTEST const.
+            /// </summary>
+            HITTEST = FIRST + 14,
+
+            /// <summary>
+            /// Represents MCM_SETFIRSTDAYOFWEEK const.
+            /// </summary>
+            SETFIRSTDAYOFWEEK = FIRST + 15,
+
+            /// <summary>
+            /// Represents MCM_GETRANGE const.
+            /// </summary>
+            GETRANGE = FIRST + 17,
+
+            /// <summary>
+            /// Represents MCM_SETRANGE const.
+            /// </summary>
+            SETRANGE = FIRST + 18,
+
+            /// <summary>
+            /// Represents MCM_SETMONTHDELTA const.
+            /// </summary>
+            SETMONTHDELTA = FIRST + 20,
+
+            /// <summary>
+            /// Represents MCM_GETMAXTODAYWIDTH const.
+            /// </summary>
+            GETMAXTODAYWIDTH = FIRST + 21,
+
+            /// <summary>
+            /// Represents MCM_GETCALENDARGRIDINFO const.
+            /// </summary>
+            GETCALENDARGRIDINFO = FIRST + 24
         }
     }
 }

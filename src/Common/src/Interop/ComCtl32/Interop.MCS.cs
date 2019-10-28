@@ -12,11 +12,30 @@ internal static partial class Interop
         /// </summary>
         public enum MCS
         {
-            DAYSTATE = 0x0001,         // MCS_DAYSTATE
-            MULTISELECT = 0x0002,      // MCS_MULTISELECT
-            WEEKNUMBERS = 0x0004,      // MCS_WEEKNUMBERS
-            NOTODAYCIRCLE = 0x0008,    // MCS_NOTODAYCIRCLE
-            NOTODAY = 0x0010           // MCS_NOTODAY
+            /// <summary>
+            /// Represents MCS_DAYSTATE const.
+            /// </summary>
+            DAYSTATE = 0x0001,
+
+            /// <summary>
+            /// Represents MCS_MULTISELECT const.
+            /// </summary>
+            MULTISELECT = 0x0002,
+
+            /// <summary>
+            /// Represents MCS_WEEKNUMBERS const.
+            /// </summary>
+            WEEKNUMBERS = 0x0004,
+
+            /// <summary>
+            /// Represents MCS_NOTODAYCIRCLE const.
+            /// </summary>
+            NOTODAYCIRCLE = 0x0008,
+
+            /// <summary>
+            /// Represents MCS_NOTODAY const.
+            /// </summary>
+            NOTODAY = 0x0010
         }
     }
 }

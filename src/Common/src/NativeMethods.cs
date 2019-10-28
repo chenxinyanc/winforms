@@ -2675,27 +2675,6 @@ namespace System.Windows.Forms
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public class SYSTEMTIME
-        {
-            public short wYear;
-            public short wMonth;
-            public short wDayOfWeek;
-            public short wDay;
-            public short wHour;
-            public short wMinute;
-            public short wSecond;
-            public short wMilliseconds;
-
-            public override string ToString()
-            {
-                return "[SYSTEMTIME: "
-                + wDay.ToString(CultureInfo.InvariantCulture) + "/" + wMonth.ToString(CultureInfo.InvariantCulture) + "/" + wYear.ToString(CultureInfo.InvariantCulture)
-                + " " + wHour.ToString(CultureInfo.InvariantCulture) + ":" + wMinute.ToString(CultureInfo.InvariantCulture) + ":" + wSecond.ToString(CultureInfo.InvariantCulture)
-                + "]";
-            }
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
         public class COMRECT
         {
             public int left;
@@ -3713,84 +3692,18 @@ namespace System.Windows.Forms
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        public class MCHITTESTINFO
-        {
-            public int cbSize = Marshal.SizeOf<MCHITTESTINFO>();
-            public int pt_x = 0;
-            public int pt_y = 0;
-            public int uHit = 0;
-            public short st_wYear = 0;
-            public short st_wMonth = 0;
-            public short st_wDayOfWeek = 0;
-            public short st_wDay = 0;
-            public short st_wHour = 0;
-            public short st_wMinute = 0;
-            public short st_wSecond = 0;
-            public short st_wMilliseconds = 0;
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct Win32Point
-        {
-            internal int x;
-            internal int y;
-
-            internal Win32Point(int x, int y)
-            {
-                this.x = x;
-                this.y = y;
-            }
-
-            static public explicit operator Win32Point(Point pt)
-            {
-                return checked(new Win32Point((int)pt.X, (int)pt.Y));
-            }
-        }
-
-        /// <summary>
-        /// <see cref="https://docs.microsoft.com/en-us/windows/win32/api/commctrl/ns-commctrl-mchittestinfo"/>
-        /// </summary>
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        public struct MCHITTESTINFO_V6
-        {
-            public int cbSize;
-
-            public Win32Point pt;
-            // public int pt_x;
-            // public int pt_y;
-
-            public int uHit;
-
-            public SYSTEMTIME st;
-            //public short st_wYear;
-            //public short st_wMonth;
-            //public short st_wDayOfWeek;
-            //public short st_wDay;
-            //public short st_wHour;
-            //public short st_wMinute;
-            //public short st_wSecond;
-            //public short st_wMilliseconds;
-
-            public Interop.RECT rc;
-
-            public int iOffset;
-            public int iRow;
-            public int iCol;
-        }
-
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         public class NMSELCHANGE
         {
             public NMHDR nmhdr;
-            public SYSTEMTIME stSelStart = null;
-            public SYSTEMTIME stSelEnd = null;
+            public Interop.SYSTEMTIME stSelStart = null;
+            public Interop.SYSTEMTIME stSelEnd = null;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         public class NMDAYSTATE
         {
             public NMHDR nmhdr;
-            public SYSTEMTIME stStart = null;
+            public Interop.SYSTEMTIME stStart = null;
             public int cDayState = 0;
             public IntPtr prgDayState;
         }
@@ -4049,7 +3962,7 @@ namespace System.Windows.Forms
         {
             public NMHDR nmhdr;
             public int dwFlags = 0;
-            public SYSTEMTIME st = null;
+            public Interop.SYSTEMTIME st = null;
         }
 
         [StructLayout(LayoutKind.Sequential)]

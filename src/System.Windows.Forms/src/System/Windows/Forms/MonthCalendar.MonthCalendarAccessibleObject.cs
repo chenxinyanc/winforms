@@ -212,8 +212,8 @@ namespace System.Windows.Forms
                         -1,
                         -1,
                         out RECT calendarBodyRectangle,
-                        out NativeMethods.SYSTEMTIME endDate,
-                        out NativeMethods.SYSTEMTIME startDate);
+                        out SYSTEMTIME endDate,
+                        out SYSTEMTIME startDate);
 
                     int columnCount = 0;
                     bool success = true;
@@ -253,8 +253,8 @@ namespace System.Windows.Forms
                         -1,
                         -1,
                         out RECT calendarBodyRectangle,
-                        out NativeMethods.SYSTEMTIME endDate,
-                        out NativeMethods.SYSTEMTIME startDate);
+                        out SYSTEMTIME endDate,
+                        out SYSTEMTIME startDate);
 
                     int rowCount = 0;
                     bool success = true;
@@ -292,7 +292,7 @@ namespace System.Windows.Forms
                 int innerX = (int)x;
                 int innerY = (int)y;
 
-                NativeMethods.MCHITTESTINFO_V6 hitTestInfo = GetHitTestInfo(innerX, innerY);
+                ComCtl32.MCHITTESTINFO hitTestInfo = GetHitTestInfo(innerX, innerY);
                 switch ((ComCtl32.MCHT)hitTestInfo.uHit)
                 {
                     case ComCtl32.MCHT.TITLEBTNPREV:
@@ -339,12 +339,12 @@ namespace System.Windows.Forms
 
             public override AccessibleObject GetFocused() => _focused;
 
-            public NativeMethods.MCHITTESTINFO_V6 GetHitTestInfo(int xScreen, int yScreen)
+            public ComCtl32.MCHITTESTINFO GetHitTestInfo(int xScreen, int yScreen)
             {
-                NativeMethods.MCHITTESTINFO_V6 hitTestInfo = new NativeMethods.MCHITTESTINFO_V6();
+                ComCtl32.MCHITTESTINFO hitTestInfo = new ComCtl32.MCHITTESTINFO();
                 hitTestInfo.cbSize = (int)Marshal.SizeOf(hitTestInfo);
-                hitTestInfo.pt = new NativeMethods.Win32Point();
-                hitTestInfo.st = new NativeMethods.SYSTEMTIME();
+                hitTestInfo.pt = new POINT();
+                hitTestInfo.st = new SYSTEMTIME();
 
                 // NativeMethods.GetCursorPos(out Point pt);
                 Point point = new Point(xScreen, yScreen);
@@ -401,8 +401,8 @@ namespace System.Windows.Forms
                     rowIndex,
                     columnIndex,
                     out RECT rectangle,
-                    out NativeMethods.SYSTEMTIME systemEndDate,
-                    out NativeMethods.SYSTEMTIME systemStartDate);
+                    out SYSTEMTIME systemEndDate,
+                    out SYSTEMTIME systemStartDate);
 
                 DateTime endDate = DateTimePicker.SysTimeToDateTime(systemEndDate).Date;
                 DateTime startDate = DateTimePicker.SysTimeToDateTime(systemStartDate).Date;
@@ -453,8 +453,8 @@ namespace System.Windows.Forms
                     rowIndex,
                     0,
                     out RECT calendarPartRectangle,
-                    out NativeMethods.SYSTEMTIME endDate,
-                    out NativeMethods.SYSTEMTIME startDate);
+                    out SYSTEMTIME endDate,
+                    out SYSTEMTIME startDate);
 
                 if (!success)
                 {
@@ -480,8 +480,8 @@ namespace System.Windows.Forms
                 int row,
                 int column,
                 out RECT rectangle,
-                out NativeMethods.SYSTEMTIME endDate,
-                out NativeMethods.SYSTEMTIME startDate)
+                out SYSTEMTIME endDate,
+                out SYSTEMTIME startDate)
             {
                 Debug.Assert(
                     (dwFlags & ~(ComCtl32.MCGIF.DATE | ComCtl32.MCGIF.RECT)) == 0,
@@ -507,8 +507,8 @@ namespace System.Windows.Forms
                 catch
                 {
                     rectangle = new RECT();
-                    endDate = new NativeMethods.SYSTEMTIME();
-                    startDate = new NativeMethods.SYSTEMTIME();
+                    endDate = new SYSTEMTIME();
+                    startDate = new SYSTEMTIME();
                     result = false;
                 }
 
@@ -568,7 +568,7 @@ namespace System.Windows.Forms
                     row,
                     column,
                     out calendarPartRectangle,
-                    out NativeMethods.SYSTEMTIME endDate, out NativeMethods.SYSTEMTIME startDate);
+                    out SYSTEMTIME endDate, out SYSTEMTIME startDate);
 
                 if (success)
                 {
@@ -641,8 +641,8 @@ namespace System.Windows.Forms
                             row,
                             column,
                             out RECT calendarPartRectangle,
-                            out NativeMethods.SYSTEMTIME systemEndDate,
-                            out NativeMethods.SYSTEMTIME systemStartDate);
+                            out SYSTEMTIME systemEndDate,
+                            out SYSTEMTIME systemStartDate);
 
                         if (!success)
                         {
